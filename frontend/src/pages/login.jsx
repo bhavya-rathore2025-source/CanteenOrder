@@ -24,7 +24,7 @@ export function LoginPage({ loggedIn, setLoggedIn }) {
 
         if (role === 'student') {
           navigate('/menu')
-        } else if (role === 'shopkeeper') {
+        } else if (role !== 'student') {
           navigate('/shop-dashboard')
         } else {
           navigate('/')

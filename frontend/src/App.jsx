@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ProtectedRoute } from './pages/protected'
+import { ShopDashboard } from './pages/shopDashboard'
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
 
@@ -67,6 +68,7 @@ function App() {
         }
       />
       <Route path='/cart' element={<Cart cart={cart} setCart={setCart} menuItems={menuItems} />} />
+      <Route path='/shop-dashboard' element={<ShopDashboard />} />
     </Routes>
   )
 }

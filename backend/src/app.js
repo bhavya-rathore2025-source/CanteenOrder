@@ -5,6 +5,7 @@ import { RegisterPage } from './routes/register.routes.js'
 import { GetFood } from './routes/getFood.routes.js'
 import cookieParser from 'cookie-parser'
 import { verifypage } from './routes/verify.routes.js'
+import { updateShop } from './routes/shop.routes.js'
 const app = express()
 
 app.use(
@@ -19,5 +20,6 @@ app.use('/app', LoginPage)
 app.use('/app', RegisterPage)
 app.use('/app', GetFood)
 app.use('/app', verifypage)
+app.use('/app', updateShop)
 
 export { app }

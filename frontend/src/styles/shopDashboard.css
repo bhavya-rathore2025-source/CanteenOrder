@@ -1,0 +1,59 @@
+.shop-page {
+  min-height: 100vh;
+  background: #0f172a;
+  color: #eaf2ff;
+  padding: 40px 20px;
+  font-family: Inter, sans-serif;
+}
+
+.add-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.add-section input {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+}
+
+.add-section button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  color: white;
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.shop-card {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 18px;
+  border-radius: 12px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.actions button {
+  padding: 6px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+}
