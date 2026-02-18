@@ -26,12 +26,15 @@ poolPromise
     // Create users table if not exists
     await pool.request().query(`
       IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'users')
-      CREATE TABLE users (
-        id INT IDENTITY(1,1) PRIMARY KEY,
-        username VARCHAR(100) UNIQUE NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        role VARCHAR(50) NOT NULL
-      )
+      CREATE TABLE Users (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Username VARCHAR(100) NOT NULL UNIQUE,
+    Email VARCHAR(150) NOT NULL UNIQUE,
+    PasswordHash VARCHAR(255) NOT NULL,
+    Role VARCHAR(20) NOT NULL CHECK (Role IN ('student', 'shopkeeper')),
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
     `)
     console.log('✅ Database and table ready')
   })
