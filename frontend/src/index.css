@@ -1,0 +1,11 @@
+/* Global reset to avoid layout shifts when scrollbars appear/disappear */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* disable outer page scrolling so layout stays static */
+  overflow: hidden;
+}

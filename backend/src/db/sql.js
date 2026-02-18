@@ -25,17 +25,35 @@ poolPromise
     console.log('✅ Connected to SQL Server')
     // Create users table if not exists
     await pool.request().query(`
-      IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'users')
-      CREATE TABLE Users (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    Username VARCHAR(100) NOT NULL UNIQUE,
-    Email VARCHAR(150) NOT NULL UNIQUE,
-    PasswordHash VARCHAR(255) NOT NULL,
-    Role VARCHAR(20) NOT NULL CHECK (Role IN ('student', 'shopkeeper')),
-    CreatedAt DATETIME DEFAULT GETDATE()
-);
+    -- Create Users table if not exists
+    IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Users')
+    BEGIN
+        CREATE TABLE Users (
+            Id INT IDENTITY(1,1) PRIMARY KEY,
+            Username VARCHAR(100) NOT NULL UNIQUE,
+            Email VARCHAR(150) NOT NULL UNIQUE,
+            PasswordHash VARCHAR(255) NOT NULL,
+            Role VARCHAR(20) NOT NULL CHECK (Role IN ('student', 'shopkeeper')),
+            CreatedAt DATETIME DEFAULT GETDATE()
+        );
+    END
 
-    `)
+    -- Create Menu table if not exists
+    IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Menu')
+    BEGIN
+        CREATE TABLE Menu (
+            Id INT IDENTITY(1,1) PRIMARY KEY,
+            Name VARCHAR(100) NOT NULL,
+            Price DECIMAL(10,2) NOT NULL,
+            ShopName VARCHAR(50) NOT NULL,
+            IsAvailable BIT DEFAULT 1,
+            ImageUrl VARCHAR(255),
+            CreatedAt DATETIME DEFAULT GETDATE(),
+            UpdatedAt DATETIME DEFAULT GETDATE()
+        );
+    END
+`)
+
     console.log('✅ Database and table ready')
   })
   .catch((err) => {

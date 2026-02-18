@@ -1,0 +1,87 @@
+.student-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: #0f172a;
+  color: #eaf2ff;
+  font-family: Inter, sans-serif;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 28px;
+}
+
+/* Grid Layout */
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Card */
+.shop-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  padding: 30px 20px;
+  border-radius: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.shop-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(96, 165, 250, 0.35);
+}
+
+.shop-card h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.shop-card p {
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+/* Hover Effect */
+.shop-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(96, 165, 250, 0.25);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+}
+
+.shop-emoji {
+  font-size: 40px;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
+}
+
+/* Bounce effect on hover */
+.shop-card:hover .shop-emoji {
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  70% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
