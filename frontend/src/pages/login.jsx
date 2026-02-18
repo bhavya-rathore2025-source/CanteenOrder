@@ -18,9 +18,17 @@ export function LoginPage({ loggedIn, setLoggedIn }) {
       const res = await axios.post('http://localhost:5000/app/login', { username, password }, { withCredentials: true })
 
       if (res?.data?.login === 'done') {
-        await setLoggedIn(true)
-        console.log('login page', loggedIn)
-        navigate('/studentDashboard')
+        setLoggedIn(true)
+
+        const role = res.data.role
+
+        if (role === 'student') {
+          navigate('/menu')
+        } else if (role === 'shopkeeper') {
+          navigate('/shop-dashboard')
+        } else {
+          navigate('/')
+        }
       } else {
         setError(res?.data?.message || 'Invalid username or password')
       }

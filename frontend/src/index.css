@@ -6,6 +6,5 @@ body {
   background-color: #0f172a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* disable outer page scrolling so layout stays static */
-  overflow: hidden;
+  overflow-x: hidden; /* allow vertical scroll, block horizontal only */
 }

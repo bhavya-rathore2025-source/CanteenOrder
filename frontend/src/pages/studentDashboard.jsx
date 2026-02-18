@@ -1,4 +1,3 @@
-import '../styles/studentDashboard.css'
 import { useNavigate } from 'react-router-dom'
 
 export function StudentDashboard() {
