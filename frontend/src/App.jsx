@@ -7,6 +7,7 @@ import { FullMenu } from './pages/menu'
 import { Route, Routes } from 'react-router'
 import { useState, useEffect } from 'react'
 import { ShopOrders } from './pages/shopOrder'
+import { StudentOrders } from './pages/studentOrders'
 import axios from 'axios'
 import { ProtectedRoute } from './pages/protected'
 import { ShopDashboard } from './pages/shopDashboard'
@@ -82,6 +83,14 @@ function App() {
         element={
           <ProtectedRoute loggedIn={loggedIn}>
             <ShopOrders />{' '}
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path='/student-orders'
+        element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <StudentOrders />{' '}
           </ProtectedRoute>
         }
       />

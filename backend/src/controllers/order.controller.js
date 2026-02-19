@@ -117,3 +117,30 @@ export const updateOrderStatus = async (req, res) => {
     res.status(500).json({ error: 'Server error' })
   }
 }
+export const getStudentOrders = async (req, res) => {
+  try {
+    const username = req.user.username
+
+    const pool = await poolPromise
+
+    const result = await pool.request().input('username', username).query(`
+        SELECT 
+            o.Id AS OrderId,
+            o.Status,
+            o.CreatedAt,
+            oi.Quantity,
+            oi.Price,
+            m.Name AS ItemName
+        FROM Orders o
+        JOIN OrderItems oi ON o.Id = oi.OrderId
+        JOIN Menu m ON oi.FoodId = m.Id
+        WHERE o.StudentUsername = @username
+        ORDER BY o.CreatedAt DESC
+      `)
+
+    res.json(result.recordset)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: 'Server error' })
+  }
+}

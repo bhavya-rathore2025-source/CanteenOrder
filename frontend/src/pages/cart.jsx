@@ -63,9 +63,14 @@ export function Cart({ cart, setCart, menuItems }) {
     <div className='cart-page'>
       <div className='cart-header'>
         <h2>🛒 Your Cart</h2>
-        <button className='back-btn' onClick={() => navigate('/menu')}>
-          ← Back to Menu
-        </button>
+        <div className='cart-actions'>
+          <button className='back-btn' onClick={() => navigate('/menu')}>
+            ← Back to Menu
+          </button>
+          <button className='orders-nav-btn' onClick={() => navigate('/student-orders')}>
+            🧾 My Orders
+          </button>
+        </div>
       </div>
 
       {entries.length === 0 ? (
