@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+
 import '../styles/shopDashboard.css'
 
-export function ShopDashboard() {
+export function ShopDashboard({ setLoggedIn, loggedIn }) {
   const [items, setItems] = useState([])
   const [newName, setNewName] = useState('')
   const [newPrice, setNewPrice] = useState('')
   const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
 
   // 🔥 Fetch Only His Items
   const fetchItems = async () => {
@@ -38,6 +41,12 @@ export function ShopDashboard() {
     } catch (err) {
       console.log(err)
     }
+  }
+
+  const handleLogout = async () => {
+    await axios.get('http://localhost:5000/app/logout', { withCredentials: true })
+    await setLoggedIn(false)
+    navigate('/login')
   }
 
   // 🔥 Update Price
@@ -81,12 +90,18 @@ export function ShopDashboard() {
   return (
     <div className='shop-page'>
       <h2>👨‍🍳 Shop Dashboard</h2>
+      <button className='home-btn' type='submit' onClick={handleLogout}>
+        log out
+      </button>
 
       {/* Add Item Section */}
       <div className='add-section'>
         <input placeholder='Item name' value={newName} onChange={(e) => setNewName(e.target.value)} />
         <input placeholder='Price' type='number' value={newPrice} onChange={(e) => setNewPrice(e.target.value)} />
         <button onClick={handleAdd}>Add Item</button>
+        <button className='orders-btn' onClick={() => navigate('/shop-orders')}>
+          📦 Orders
+        </button>
       </div>
 
       {/* Item List */}

@@ -6,6 +6,7 @@ import { Cart } from './pages/cart'
 import { FullMenu } from './pages/menu'
 import { Route, Routes } from 'react-router'
 import { useState, useEffect } from 'react'
+import { ShopOrders } from './pages/shopOrder'
 import axios from 'axios'
 import { ProtectedRoute } from './pages/protected'
 import { ShopDashboard } from './pages/shopDashboard'
@@ -68,7 +69,22 @@ function App() {
         }
       />
       <Route path='/cart' element={<Cart cart={cart} setCart={setCart} menuItems={menuItems} />} />
-      <Route path='/shop-dashboard' element={<ShopDashboard />} />
+      <Route
+        path='/shop-dashboard'
+        element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <ShopDashboard setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path='/shop-orders'
+        element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <ShopOrders />{' '}
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   )
 }

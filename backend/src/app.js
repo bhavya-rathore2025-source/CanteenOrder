@@ -6,6 +6,7 @@ import { GetFood } from './routes/getFood.routes.js'
 import cookieParser from 'cookie-parser'
 import { verifypage } from './routes/verify.routes.js'
 import { updateShop } from './routes/shop.routes.js'
+import { orderRoute } from './routes/order.routes.js'
 const app = express()
 
 app.use(
@@ -21,5 +22,6 @@ app.use('/app', RegisterPage)
 app.use('/app', GetFood)
 app.use('/app', verifypage)
 app.use('/app', updateShop)
+app.use('/app', orderRoute)
 
 export { app }

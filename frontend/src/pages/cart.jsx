@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import '../styles/cart.css'
-
+import axios from 'axios'
 export function Cart({ cart, setCart, menuItems }) {
   const navigate = useNavigate()
 
@@ -11,6 +11,19 @@ export function Cart({ cart, setCart, menuItems }) {
         qty,
       }))
       .filter((entry) => entry.item && entry.qty > 0)
+  }
+  console.log(cart)
+
+  const handleCheckout = async () => {
+    try {
+      await axios.post('http://localhost:5000/app/place-order', { cart }, { withCredentials: true })
+      console.log(cart)
+
+      setCart({})
+      alert('Order placed successfully!')
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   const increaseQty = (id) => {
@@ -84,7 +97,9 @@ export function Cart({ cart, setCart, menuItems }) {
 
           <div className='cart-footer'>
             <h3>Total: ₹{getTotal()}</h3>
-            <button className='checkout-btn'>Proceed to Checkout</button>
+            <button className='checkout-btn' onClick={handleCheckout}>
+              Proceed to Checkout
+            </button>
           </div>
         </>
       )}

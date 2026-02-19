@@ -52,6 +52,29 @@ poolPromise
             UpdatedAt DATETIME DEFAULT GETDATE()
         );
     END
+    IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'orders')
+    BEGIN
+      CREATE TABLE Orders (
+      Id INT IDENTITY(1,1) PRIMARY KEY,
+      StudentUsername VARCHAR(100) NOT NULL,
+      TotalAmount DECIMAL(10,2) NOT NULL,
+      Status VARCHAR(50) DEFAULT 'Pending',
+      CreatedAt DATETIME DEFAULT GETDATE()
+    
+      );
+    END
+    IF NOT EXISTS (SELECT * FROM sys.tables where name= 'OrderItems')
+    BEGIN
+    CREATE TABLE OrderItems (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    OrderId INT NOT NULL,
+    FoodId INT NOT NULL,
+    Quantity INT NOT NULL,
+    Price DECIMAL(10,2) NOT NULL,
+
+    FOREIGN KEY (OrderId) REFERENCES Orders(Id)
+);
+END
 `)
 
     console.log('✅ Database and table ready')
